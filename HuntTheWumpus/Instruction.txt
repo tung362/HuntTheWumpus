@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+Your Objective is to hit the wumpus with an arrow.
+
+There are 5 hazards randomly placed on the map:
+- 2x (Endless Pit) If you fall into the pit you lose.
+- 2x (Giant Bats) If you encounter them they will drag you to a random safe.
+room
+- 1x (Wumpus) If he run into him for the first time, he will run to a random
+adjacent room. The Second time you run into him, he will eat you and you lose
+
+Warnings:
+Hazards adjacent to the current room will warn you.
+"You heard a wooshing noise in the distance" - (Giant Bats)
+"A cold breeze fills the air" - (Endless Pit)
+"You feel chills down your spine as if something horrible is close" - (Wumpus)
+
+Arrows:
+When firing an arrow, the game will ask which room you want to shoot through.
+The arrow moves to a random room adjacent to it's current room for 5 turns,
+after 5 turns the arrow is considered dead. The arrow never goes to the same
+room twice.
+
+Wumpus:
+The Wumpus sleeps and will no move until you either bump into him or shoot
+an arrow. Once woken, he has a 75% chance to much next turn and a 25% chance
+to stay idle.
+
+If you win or die, it will be recorded to the high score.
+
+-----------------------------------------------------------------------------
+Lose Conditions:
+- Endless Pit
+- Wumpus
+- Running out of arrows
+
+Win Conditions:
+- Hit Wumpus with an arrow
+ 
