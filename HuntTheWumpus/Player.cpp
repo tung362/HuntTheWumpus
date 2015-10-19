@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <windows.h>
 
 using namespace sfw;
 using namespace sfw_string;
@@ -41,6 +42,7 @@ void Player::ConsoleCommand()
 	if (room[CurrentRoom].HasBat() == true)
 	{
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5);
 		cout << "Oh no! you ran into a room of giant bats! They carried you to a random room" << endl;
 
 		for (int i = 0; i < 50; ++i) //Assign random, non dangerous room
@@ -65,6 +67,7 @@ void Player::ConsoleCommand()
 	else if (room[CurrentRoom].HasPit() == true)
 	{
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 		cout << "Oh no! You fell into an endless pit!" << endl << "Game Over" << endl;
 		LoseGame = true;
 		IsPlayerTurn = false;
@@ -74,12 +77,14 @@ void Player::ConsoleCommand()
 		if (krampus.HasAwaken() == true)
 		{
 			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "Oh no! The Wumpus Ate You!" << endl << "Game Over" << endl;
 			LoseGame = true;
 			IsPlayerTurn = false;
 		}
 		else //Wumpus becomes active
 		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5);
 			cout << "You woke up the Wumpus! " << endl << "The Wumpus charges out of the room" << endl;
 			krampus.Awake();
 
@@ -111,6 +116,7 @@ void Player::ConsoleCommand()
 	else if (room[CurrentRoom].HasArrow() == true)
 	{
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 		cout << "Oh no! You got shot by your own arrow!" << endl << "Game Over" << endl;
 		LoseGame = true;
 		IsPlayerTurn = false;
@@ -126,6 +132,7 @@ void Player::ConsoleCommand()
 
 		if (arrowsStillAlive == 0)
 		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "You ran out of arrows! You lose!";
 			LoseGame = true;
 			IsPlayerTurn = false;
@@ -141,6 +148,7 @@ void Player::ConsoleCommand()
 	//Is it the player's turn?
 	if (IsPlayerTurn == true)
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 		cout << "You are in room: " << room[CurrentRoom].GetID() << endl;
 		cout << "You Have " << arrowNum << " arrow Left " << endl;
 		cout << "You see a tunnel leading to room: " << room[CurrentRoom].GetRoom1().GetID() << endl;
@@ -150,19 +158,25 @@ void Player::ConsoleCommand()
 		//Warns of nearby danger
 		if (room[CurrentRoom].GetRoom1().HasBat() || room[CurrentRoom].GetRoom2().HasBat() || room[CurrentRoom].GetRoom3().HasBat())
 		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "You heard a wooshing noise in the distance " << endl;
 		}
 		if (room[CurrentRoom].GetRoom1().HasPit() || room[CurrentRoom].GetRoom2().HasPit() || room[CurrentRoom].GetRoom3().HasPit())
 		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "A cold breeze fills the air " << endl;
 		}
 		if (room[CurrentRoom].GetRoom1().HasWumpus() || room[CurrentRoom].GetRoom2().HasWumpus() || room[CurrentRoom].GetRoom3().HasWumpus())
 		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "You feel chills down your spine as if something horrible is close " << endl;
 		}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 		cout << "Type 1 to shoot arrow" << endl;
 		cout << "Type 2 to move" << endl;
 		cout << "Type 3 to quit" << endl;
+		cout << "Type 4 to toggle Debug Mode" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 
 		int choice;
 
@@ -178,7 +192,11 @@ void Player::ConsoleCommand()
 		{
 		case 1:
 			if (arrowNum > 0) ShootArrow();
-			else cout << "Oh no! You ran out of arrows, hopefully your last arrow hits the wumpus" << endl;
+			else
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+				cout << "Oh no! You ran out of arrows, hopefully your last arrow hits the wumpus" << endl;
+			}
 			break;
 		case 2:
 			Movement();
@@ -186,6 +204,12 @@ void Player::ConsoleCommand()
 			break;
 		case 3:
 			LoseGame = true;
+			IsPlayerTurn = false;
+			break;
+		case 4:
+			system("cls");
+			if (DebugMode == false) DebugMode = true;
+			else DebugMode = false;
 			IsPlayerTurn = false;
 			break;
 		default:
@@ -197,9 +221,11 @@ void Player::ConsoleCommand()
 void Player::Movement()
 {
 	cout << "Which room would you like to go into? " << endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 	cout << "Type 1 to goto room: " << room[CurrentRoom].GetRoom1().GetID() << endl;
 	cout << "Type 2 to goto room: " << room[CurrentRoom].GetRoom2().GetID() << endl;
 	cout << "Type 3 to goto room: " << room[CurrentRoom].GetRoom3().GetID() << endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 
 	int choice;
 	cin >> choice;
@@ -225,10 +251,12 @@ void Player::Movement()
 void Player::ShootArrow()
 {
 	cout << "Which room would you like to shoot through?" << endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 	cout << "Type 1 to shoot into room: " << room[CurrentRoom].GetRoom1().GetID() << endl;
 	cout << "Type 2 to shoot into room: " << room[CurrentRoom].GetRoom2().GetID() << endl;
 	cout << "Type 3 to shoot into room: " << room[CurrentRoom].GetRoom3().GetID() << endl;
 	cout << "Type 4 change mind" << endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 
 	int choice;
 	cin >> choice;

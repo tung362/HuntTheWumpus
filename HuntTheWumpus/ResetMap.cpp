@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include <iostream>
 #include <cstring>
+#include <windows.h>
 
 using namespace sfw;
 using namespace sfw_string;
@@ -13,6 +14,7 @@ using std::endl;
 
 void ResetMap()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	//Reset game object back to default values
 	player.ResetAll();
 	for (int i = 0; i < 5; ++i) arrow[i].ResetAll();

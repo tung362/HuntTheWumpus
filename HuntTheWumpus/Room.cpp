@@ -45,11 +45,14 @@ void Room::DrawRoom()
 
 	DrawText(Vector2(position.x, position.y + 10), P1str.c_str(), 10, 10);
 
-	//Display after player wins/loses
-	if (hasPitFall == true) drawCircle(position.x, position.y, 30);
-	if (hasABat == true) drawCircle(position.x, position.y, 15);
-	if (hasAWumpus == true) DrawBox(Vector2(position.x, position.y), 35, 35);
-	if (hasAArrow == true) DrawBox(position, 30, 5);
+	//Display after player wins/loses or Debug Mode is true
+	if (DebugMode == true || LoseGame == true || WinGame == true)
+	{
+		if (hasPitFall == true) drawCircle(position.x, position.y, 30);
+		if (hasABat == true) drawCircle(position.x, position.y, 15);
+		if (hasAWumpus == true) DrawBox(Vector2(position.x, position.y), 35, 35);
+		if (hasAArrow == true) DrawBox(position, 30, 5);
+	}
 }
 
 void Room::SetRoomStats(Vector2 NewPosition, int NewRoomID, bool NewHasBat, bool NewHasPitFall, bool NewHasWumpus, bool NewHasArrow)

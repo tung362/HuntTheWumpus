@@ -22,6 +22,7 @@ bool LoseGame = false;
 bool WinGame = false;
 bool UseConsoleForMenu = false;
 int PlayerTurnNum = 0;
+bool DebugMode = false;
 char PlayerName[128];
 int RoomsAlreadyUsed[20]; //Prevents a room from having more than one kind of encounter
 

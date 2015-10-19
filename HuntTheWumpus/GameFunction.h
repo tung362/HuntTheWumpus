@@ -15,6 +15,7 @@ extern bool LoseGame;
 extern bool WinGame;
 extern bool UseConsoleForMenu;
 extern int PlayerTurnNum;
+extern bool DebugMode;
 extern char PlayerName[128];
 extern int RoomsAlreadyUsed[20];
 //End Of Global Data

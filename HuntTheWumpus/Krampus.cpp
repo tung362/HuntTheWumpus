@@ -4,6 +4,7 @@
 #include "GameFunction.h"
 #include <iostream>
 #include <cstring>
+#include <windows.h>
 
 using namespace sfw;
 using namespace sfw_string;
@@ -43,6 +44,7 @@ void Krampus::OnLogicUpdate()
 		if (CurrentRoom == singleArrow.GetCurrentRoom())
 		{
 			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 			cout << "You shot the wumpus!" << endl << "You Win" << endl;
 			WinGame = true;
 			IsPlayerTurn = false;
@@ -90,6 +92,7 @@ void Krampus::Movement()
 		if (CurrentRoom == player.GetCurrentRoom())
 		{
 			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "Oh no! The Wumpus Ate You!" << endl << "Game Over" << endl;
 			LoseGame = true;
 			IsPlayerTurn = false;

@@ -96,7 +96,8 @@ void Arrow::Movement()
 
 void Arrow::DrawArrow()
 {
-	DrawBox(position, 5, 30);
+	//Display after player wins/loses or Debug Mode is true
+	if (DebugMode == true || LoseGame == true || WinGame == true) DrawBox(position, 5, 30);
 }
 
 void Arrow::Awake()
