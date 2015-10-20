@@ -45,7 +45,7 @@ void DisplayConsole()
 			break;
 		case 2:
 			system("cls");
-			cout << "Press 'w' or 's' key to select a button and use 'Space' to press button" << endl;
+			cout << string("Press 'w' or 's' key to select a button and use 'Space' to press button") << endl;
 			UseConsoleForMenu = false;
 			mainMenuRunOnce = false;
 			break;
@@ -57,14 +57,14 @@ void DisplayConsole()
 	if (UseConsoleForMenu == true)
 	{
 		system("cls");
-		cout << "Hunt the Wumpus" << endl;
-		cout << "---------------" << endl;
-		cout << "Type 1 to play" << endl;
-		cout << "Type 2 for instructions" << endl;
-		cout << "Type 3 for about" << endl;
-		cout << "Type 4 to view High Scores" << endl;
-		cout << "Type 5 to clear High Scores" << endl;
-		cout << "Type 6 to exit" << endl;
+		cout << string("Hunt the Wumpus") << endl;
+		cout << string("---------------") << endl;
+		cout << string("Type 1 to play") << endl;
+		cout << string("Type 2 for instructions") << endl;
+		cout << string("Type 3 for about") << endl;
+		cout << string("Type 4 to view High Scores") << endl;
+		cout << string("Type 5 to clear High Scores") << endl;
+		cout << string("Type 6 to exit") << endl;
 
 		int choice2;
 		cin >> choice2;
@@ -90,7 +90,7 @@ void DisplayConsole()
 			break;
 		case 3:
 			useLevelDelayTimer = 0;
-			cout << "Made By: Tung Nguyen" << endl;
+			cout << string("Made By: Tung Nguyen") << endl;
 			system("pause");
 			break;
 		case 4:
@@ -107,7 +107,7 @@ void DisplayConsole()
 			break;
 		case 5:
 			useLevelDelayTimer = 0;
-			cout << "File Cleared" << endl;
+			cout << string("File Cleared") << endl;
 			HighScoreFile.open("HighScores.txt", std::fstream::out | std::fstream::trunc);
 			HighScoreFile.close();
 			system("pause");
