@@ -13,5 +13,5 @@ using std::endl;
 
 int Randint(int Min, int Max)
 {
-	return Min + (rand() % (Max - Min + 1));
+	return Min + (rand() % (Max - Min + 1)); //Got From http://stackoverflow.com/questions/5008804/generating-random-integer-from-a-range
 }
